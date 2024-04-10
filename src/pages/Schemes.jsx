@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import { useGetSchemeQuery } from "../slices/getqueries/schemequeriesApi";
 import schemeBG from "../assets/scheme.jpg";
 
-const Scheme = () => {
+const Scheme = ({ search }) => {
   const { data: schemesData, isLoading, isError } = useGetSchemeQuery();
 
   if (isLoading) {
@@ -28,6 +28,7 @@ const Scheme = () => {
       description: scheme.description,
       imageURL: `${scheme.imageURL.replace(/\\/g, "/")}`,
       date: scheme.date,
+      category: scheme.category,
     })) || [];
 
   console.log(titlesAndDescriptions);

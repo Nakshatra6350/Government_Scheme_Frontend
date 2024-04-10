@@ -1,14 +1,40 @@
-import { Link } from "react-router-dom";
-import React from "react";
-
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { CiSearch } from "react-icons/ci";
 import "react-dropdown/style.css";
 import { toast } from "react-toastify";
+import { useLogoutMutation } from "../slices/postqueries/userqueriesApi";
+import { ErrorMessage } from "formik";
+import Card from "./Card";
+import Scheme from "../pages/Schemes";
 const SchemeHeader = () => {
-  const handleLogout = () => {
-    // Perform logout logic here
-    // For example, clear local storage, redirect to login page, etc.
-    toast.success("Logout successful!", { autoClose: 2000 });
+  const navigate = useNavigate();
+  const [logoutHandler, { isError, logoutError }] = useLogoutMutation();
+  const handleLogout = async () => {
+    try {
+      const res = await logoutHandler();
+      if (res) {
+        const token = localStorage.getItem("token");
+        if (token) {
+          localStorage.removeItem("token"); // Set token in local storage
+        }
+        toast.success("User logout successfull", {
+          autoClose: 2000,
+        });
+        navigate("/");
+      } else {
+        toast.error("Error in User logut");
+      }
+    } catch (err) {
+      if (isError) {
+        console.log(logoutError);
+        toast.error(logoutError);
+      }
+      console.log(err);
+      toast.error(err?.data?.error || err.data);
+    }
   };
+
   return (
     <div className="p-5 flex justify-around items-center">
       <div className="flex justify-center items-center gap-x-3">
@@ -32,6 +58,8 @@ const SchemeHeader = () => {
           >
             Home
           </a> */}
+
+          {/* <FilteredScheme searchQuery={searchQuery} /> */}
           <a
             href="/about"
             className="text-3xl p-2 no-underline hover:no-underline hover:text-red-500 hover:cursor-pointer"
@@ -39,8 +67,8 @@ const SchemeHeader = () => {
             About
           </a>
           <a
-            href="/userSchemes"
-            className="text-3xl p-2 no-underline hover:no-underline  hover:text-red-500 hover:cursor-pointer"
+            href="userSchemes"
+            className="text-3xl p-2 no-underline hover:no-underline hover:text-red-500 hover:cursor-pointer"
           >
             Schemes
           </a>
@@ -54,13 +82,12 @@ const SchemeHeader = () => {
       </div>
 
       {/* <Dropdown isLogin={true} /> */}
-      <Link
-        to="/"
+      <button
         onClick={handleLogout}
         className="bg-red-500 text-white border border-green rounded-lg px-8 py-2 transition duration-300 ease-in-out hover:no-underline hover:bg-red-600 hover:text-white "
       >
         Logout
-      </Link>
+      </button>
     </div>
   );
 };

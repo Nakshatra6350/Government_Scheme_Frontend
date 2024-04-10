@@ -3,7 +3,7 @@ import { BASE_URL } from "../constant";
 import schemeBG from "../assets/scheme.jpg";
 import { Link } from "react-router-dom";
 
-const CardAdmin = ({ cards }) => {
+const Card = ({ cards }) => {
   const divStyle = {
     backgroundImage: `url(${schemeBG})`, // Set the background image
     backgroundSize: "cover",
@@ -17,23 +17,25 @@ const CardAdmin = ({ cards }) => {
       <div className="flex flex-wrap justify-center">
         {cards.map((card, index) => (
           <div key={index} className="w-full sm:w-1/3 p-4">
-            <div className="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between h-full">
+            <div
+              className="bg-white shadow-md mb-0 rounded-lg p-4 flex flex-col justify-between max-h-96 overflow-y-auto"
+              style={{ scrollbarWidth: "thin" }}
+            >
               <div>
                 <img
                   src={`${BASE_URL}/${card.imageURL}`}
                   alt={card.imageURL}
-                  className=" object-scale-down h-60 w-full mb-2 rounded-lg"
+                  className="object-fill w-full mb-2 rounded-lg"
                 />
-                <h2 className="text-2xl font-bold italic mb-2">
+                <h1 className="text-2xl font-bold italic mb-2">
                   Scheme: {card.title}
-                </h2>
-                <p
-                  className={`text-gray-700 mb-2 overflow-y-auto h-50
-                  }`}
-                  style={{ scrollbarWidth: "thin" }}
-                >
+                </h1>
+                <h3 className="text-xl font-bold italic mb-2">
+                  Category: {card.category}
+                </h3>
+                <div className="text-gray-700 mb-2">
                   Description: {card.description}
-                </p>
+                </div>
                 <span className="text-gray-600 font-bold italic">
                   Date posted: {card.date.split("T")[0]}
                 </span>
@@ -54,4 +56,4 @@ const CardAdmin = ({ cards }) => {
   );
 };
 
-export default CardAdmin;
+export default Card;

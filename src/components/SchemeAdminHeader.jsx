@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "react-dropdown/style.css";
 import { toast } from "react-toastify";
 import AddScheme from "./AddScheme";
+import { useLogoutAdminMutation } from "../slices/postqueries/adminqueriesApi";
 const SchemeAdminHeader = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,10 +17,33 @@ const SchemeAdminHeader = () => {
   // const handleClick = () => {
   //   setShowComponent(true);
   // };
-  const handleLogout = () => {
-    // Perform logout logic here
-    // For example, clear local storage, redirect to login page, etc.
-    toast.success("Logout successful!", { autoClose: 2000 });
+  const navigate = useNavigate();
+  const [logoutHandler, { isError, logoutError }] = useLogoutAdminMutation();
+  const handleLogout = async () => {
+    try {
+      const res = await logoutHandler();
+      console.log(res);
+      if (res.data) {
+        const token = localStorage.getItem("token");
+        console.log(token);
+        if (token) {
+          localStorage.removeItem("token"); // Set token in local storage
+        }
+        toast.success("User logout successfull", {
+          autoClose: 2000,
+        });
+        navigate("/");
+      } else {
+        toast.error("Error in User logut");
+      }
+    } catch (err) {
+      if (isError) {
+        console.log(logoutError);
+        toast.error(logoutError);
+      }
+      console.log(err);
+      toast.error(err?.data?.error || err.data);
+    }
   };
   return (
     <div className="p-5 flex justify-around items-center">

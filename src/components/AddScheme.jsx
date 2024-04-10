@@ -8,6 +8,7 @@ const AddScheme = ({ isOpen, onClose }) => {
     title: "",
     description: "",
     imageURL: null,
+    category: "",
   };
   const formik = useFormik({
     initialValues,
@@ -17,6 +18,7 @@ const AddScheme = ({ isOpen, onClose }) => {
       formData.append("title", values.title);
       formData.append("description", values.description);
       formData.append("imageURL", values.imageURL);
+      formData.append("category", values.category);
       const headers = {
         token: localStorage.getItem("token"),
       };
@@ -121,6 +123,28 @@ const AddScheme = ({ isOpen, onClose }) => {
             {formik.touched.title && formik.errors.title && (
               <div className="error text-white text-md">
                 {formik.errors.title}
+              </div>
+            )}
+            <div className="flex flex-col justify-start items-start md:flex-row md:justify-center md:items-center w-full">
+              <label
+                className="text-4xl  mr-20 text-white w-32 font-semibold"
+                htmlFor="title"
+              >
+                Category:
+              </label>
+              <input
+                type="text"
+                name="category"
+                placeholder="Enter category"
+                value={formik.values.category}
+                onChange={formik.handleChange}
+                className="bg-white opacity-90 text-black border-2 w-full md:w-1/2 p-4 rounded-md hover:opacity-100"
+                required
+              />
+            </div>
+            {formik.touched.category && formik.errors.category && (
+              <div className="error text-white text-md">
+                {formik.errors.category}
               </div>
             )}
             <div className="flex flex-col justify-start items-start md:flex-row md:justify-center md:items-center w-full">

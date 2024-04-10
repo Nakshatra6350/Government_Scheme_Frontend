@@ -45,7 +45,9 @@ const FormInput = ({ tags, disabled }) => {
             toast.success("Admin login successfull", {
               autoClose: 2000,
             });
-            navigate("/adminSchemes");
+            setTimeout(() => {
+              navigate("/adminSchemes");
+            }, 200);
           } else {
             toast.error("Error in admin login");
           }
@@ -57,10 +59,16 @@ const FormInput = ({ tags, disabled }) => {
           console.log(res);
 
           if (res) {
+            const token = res.token;
+            if (token) {
+              localStorage.setItem("token", token); // Set token in local storage
+            }
             toast.success("User login succcessfull", {
               autoClose: 2000,
             });
-            navigate("/userSchemes");
+            setTimeout(() => {
+              navigate("/userSchemes");
+            }, 200);
           } else {
             toast.error("User Login error");
           }

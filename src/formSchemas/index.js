@@ -43,10 +43,10 @@ export const schemeSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
     .min(3, "Title must be at least 3 characters")
-    .max(20, "Title must be at most 20 characters"),
+    .max(100, "Title must be at most 20 characters"),
   description: Yup.string()
     .required("Description is required")
     .min(5, "Description must be at least 5 characters")
-    .max(100, "Description must be at most 100 characters"),
+    .max(800, "Description must be at most 400 characters"),
   imageURL: Yup.mixed().required("Image is required"),
 });

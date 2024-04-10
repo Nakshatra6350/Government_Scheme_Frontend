@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useSignupMutation } from "../slices/postqueries/userqueriesApi.js";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import signupImg from "../assets/signup.jpg";
+import signupImg from "../assets/scheme.jpg";
 import { signupSchema } from "../formSchemas/index.js";
 import Footer from "./Footer.jsx";
 
@@ -61,6 +61,10 @@ const SignupUser = ({ tags, disabled }) => {
     },
   });
 
+  const handleBackClick = () => {
+    navigate("/login/user");
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -78,8 +82,25 @@ const SignupUser = ({ tags, disabled }) => {
           <div
             className={`p-4  rounded-lg  w-full h-4/5 md:w-1/2 md:h-4/5 bg-transparent`}
           >
-            <div className=" flex-col items-center justify-center h-full w-full">
-              <h1 className="text-4xl mt-40 text-white text-center font-semibold mb-4">
+            <div className="flex w-full justify-between items-center">
+              <h1 className="text-4xl mt-10 text-gray-500 font-bold mb-10 ">
+                Hi Welcome to Signup Page.
+              </h1>
+              <button
+                onClick={handleBackClick}
+                className="bg-red-500 text-white border border-green rounded-lg px-8 py-2 transition duration-300 ease-in-out hover:bg-red-600 hover:text-white "
+              >
+                ← Back to home
+              </button>
+            </div>
+            <p className=" text-gray-400 font-semibold">
+              Welcome to our secure Signup portal. Please enter your username,
+              email and password to create your account. We prioritize the
+              security of your personal information, and all data entered on
+              this page is encrypted to ensure confidentiality.
+            </p>
+            <div className=" flex-col bg-blue-500 opacity-80 rounded-lg  justify-center h-full w-full">
+              <h1 className="text-4xl mt-20 text-white text-center font-semibold mb-4">
                 User Signup!!
               </h1>
               <form
