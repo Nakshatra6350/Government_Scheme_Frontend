@@ -11,21 +11,20 @@ const Card = ({ cards }) => {
     backgroundPosition: "center",
     // minHeight: "100vh", // Set the minimum height to cover the viewport
   };
-
   return (
     <div style={divStyle}>
       <div className="flex flex-wrap justify-center">
         {cards.map((card, index) => (
           <div key={index} className="w-full sm:w-1/3 p-4">
             <div
-              className="bg-white shadow-md mb-0 rounded-lg p-4 flex flex-col justify-between max-h-96 overflow-y-auto"
-              style={{ scrollbarWidth: "thin" }}
+              className="card-container bg-white shadow-md mb-0 rounded-lg p-4 flex flex-col justify-between overflow-y-auto"
+              style={{ scrollbarWidth: "thin", maxHeight: "48rem" }}
             >
               <div>
                 <img
                   src={`${BASE_URL}/${card.imageURL}`}
                   alt={card.imageURL}
-                  className="object-fill w-full mb-2 rounded-lg"
+                  className="object-fill  h-96 w-full mb-2 rounded-lg"
                 />
                 <h1 className="text-2xl font-bold italic mb-2">
                   Scheme: {card.title}

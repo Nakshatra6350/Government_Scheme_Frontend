@@ -47,10 +47,10 @@ const ContactForm = () => {
 
   return (
     <>
-      <div style={divStyle} className=" rounded-md w-1/2 h-1/3 ">
-        <div className="w-full h-1/3 flex justify-center items-center">
+      <div style={divStyle} className=" rounded-md w-1/2 h-full ">
+        <div className="w-full h-full flex justify-center items-center">
           <div
-            className="p-4 m-4 rounded-lg opacity-100 flex-row justify-center items-center w-full h-1/2"
+            className="p-4 m-4 rounded-lg opacity-100 flex-row justify-center items-center w-full h-full"
             //   style={divStyle}
           >
             <div className="flex flex-col items-center justify-center h-full w-full">

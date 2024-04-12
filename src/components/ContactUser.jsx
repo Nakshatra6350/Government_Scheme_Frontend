@@ -56,7 +56,13 @@ const ContactAdmin = () => {
               questions about our services, need help with an order, or simply
               want to provide feedback, we're here to listen. Your satisfaction
               is our priority, and we're committed to resolving any issues or
-              concerns you may have promptly.
+              concerns you may have promptly.he portal was launched in November
+              2005.Delve into the rich tapestry of our nation's history with the
+              Government Scheme Portal's dedicated section on historical
+              milestones and achievements. From the struggle for independence to
+              the formation of modern democratic institutions, our platform
+              offers a curated collection of pivotal moments that have shaped
+              the course of our nation's development.
             </p>
           </div>
         </div>
