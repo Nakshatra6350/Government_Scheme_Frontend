@@ -8,6 +8,7 @@
     "@emailjs/browser": "^4.3.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@kommunicate/kommunicate-chatbot-plugin": "^0.0.7",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.12",
     "@mui/x-date-pickers": "^6.16.1",
